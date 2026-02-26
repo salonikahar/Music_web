@@ -1,0 +1,515 @@
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 1000;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #6a6a6a transparent;
+    border-right: 1px solid #282828;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #6a6a6a;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}
+
+/* Add subtle pattern overlay */
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(29, 185, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(29, 185, 84, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ================= LOGO ================= */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.logo {
+    width: 130px;
+}
+
+/* MOBILE TOGGLE */
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.sidebar-toggle:hover {
+    color: #fff;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #242424 100%);
+    border-radius: 25px;
+    padding: 12px 18px;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.search-box:hover {
+    border-color: #ff8a2d;
+    box-shadow: 0 4px 20px rgba(29, 185, 84, 0.1);
+    transform: translateY(-1px);
+}
+
+.search-box:focus-within {
+    border-color: #ff8a2d;
+    box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.2);
+}
+
+.search-box i {
+    font-size: 18px;
+    color: #ff8a2d;
+    transition: color 0.3s ease;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.search-box input::placeholder {
+    color: #888;
+    font-weight: 400;
+}
+
+/* ================= NAV LINKS ================= */
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-section:first-of-type {
+    margin-top: 16px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #b3b3b3;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 185, 84, 0.1);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.nav-link:hover::before {
+    left: 0;
+}
+
+.nav-link i {
+    font-size: 22px;
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.nav-link:hover i {
+    transform: scale(1.1);
+}
+
+.nav-link.active {
+    color: #ff8a2d;
+    background: rgba(29, 185, 84, 0.15);
+    font-weight: 600;
+}
+
+.nav-link.premium-active {
+    color: #ff8a2d;
+    background: rgba(29, 185, 84, 0.15);
+    font-weight: 600;
+}
+
+.nav-link.premium-active:hover {
+    background: rgba(29, 185, 84, 0.25);
+}
+
+/* ================= USER SECTION ================= */
+
+.user-section {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #282828;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+    border: 1px solid #282828;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-info::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(29, 185, 84, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-info:hover {
+    background: linear-gradient(135deg, #282828 0%, #323232 100%);
+    transform: translateY(-2px);
+    border-color: #ff8a2d;
+    box-shadow: 0 8px 16px rgba(29, 185, 84, 0.15);
+}
+
+.user-info:hover::before {
+    opacity: 1;
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff8a2d 0%, #ffb067 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #000;
+    flex-shrink: 0;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+.user-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-status {
+    font-size: 12px;
+    color: #b3b3b3;
+    margin-top: 2px;
+}
+
+/* ================= DIVIDER ================= */
+
+.sidebar-divider {
+    height: 1px;
+    background: #282828;
+    margin: 8px 0;
+}
+
+/* ================= SEARCH RESULTS ================= */
+
+.search-results {
+    margin-top: 8px;
+    max-height: 420px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.search-results::-webkit-scrollbar {
+    display: none;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.search-item:hover {
+    background: #1a1a1a;
+}
+
+.search-item-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.search-item-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.search-item-type {
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+/* ================= EMPTY SEARCH ================= */
+
+.search-no-results {
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* ================= USER SECTION ================= */
+
+.user-section {
+    margin-top: auto;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.user-info:hover {
+    background: linear-gradient(135deg, #242424 0%, #2a2a2a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff8a2d 0%, #ffb067 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.user-status {
+    font-size: 12px;
+    color: #ff8a2d;
+    font-weight: 500;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-link {
+    animation: slideIn 0.3s ease-out;
+}
+
+.nav-link:nth-child(1) { animation-delay: 0.1s; }
+.nav-link:nth-child(2) { animation-delay: 0.2s; }
+.nav-link:nth-child(3) { animation-delay: 0.3s; }
+.nav-link:nth-child(4) { animation-delay: 0.4s; }
+.nav-link:nth-child(5) { animation-delay: 0.5s; }
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 300px;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .search-box:hover {
+        transform: none;
+    }
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px;
+        padding: 20px 16px;
+    }
+
+    .nav-link {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .search-box {
+        padding: 10px 16px;
+    }
+}
+
+/* PulseWave branding */
+.app-logo {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.sidebar {
+    background:
+        radial-gradient(500px 400px at -30% 0%, rgba(55, 201, 255, 0.18), transparent 60%),
+        linear-gradient(180deg, #0c1225 0%, #0b1020 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-box,
+.user-info {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-box i,
+.nav-link.active,
+.nav-link.premium-active,
+.user-status {
+    color: var(--accent);
+}
+
+.user-avatar {
+    background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+    color: #120d06;
+}
+

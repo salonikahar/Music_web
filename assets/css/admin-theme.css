@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --admin-bg: #090d19;
+    --admin-bg-soft: #0f1529;
+    --admin-panel: #151d31;
+    --admin-panel-2: #1e2742;
+    --admin-border: #2c3655;
+    --admin-text: #f4f8ff;
+    --admin-text-muted: #b8c2de;
+    --admin-accent: #ff8a2d;
+    --admin-accent-soft: #ffb067;
+}
+
+body {
+    background:
+        radial-gradient(900px 420px at 95% 0%, rgba(255, 138, 45, 0.18), transparent 60%),
+        radial-gradient(800px 400px at -10% 8%, rgba(55, 201, 255, 0.16), transparent 56%),
+        linear-gradient(180deg, var(--admin-bg) 0%, var(--admin-bg-soft) 100%) !important;
+    color: var(--admin-text) !important;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif !important;
+}
+
+.admin-sidebar {
+    background:
+        radial-gradient(420px 260px at 0% 0%, rgba(55, 201, 255, 0.17), transparent 60%),
+        linear-gradient(180deg, #0c1225 0%, #0b1020 100%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 14px 0 34px rgba(3, 7, 18, 0.5) !important;
+}
+
+.admin-sidebar .logo {
+    text-decoration: none !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    color: var(--admin-text) !important;
+}
+
+.admin-sidebar .nav-link {
+    color: var(--admin-text-muted) !important;
+    border: 1px solid transparent;
+    border-radius: 10px !important;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: var(--admin-text) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.admin-sidebar .nav-link.active {
+    box-shadow: inset 3px 0 0 var(--admin-accent);
+}
+
+.main-content {
+    margin-left: 240px !important;
+    padding: 28px !important;
+    min-height: 100vh;
+}
+
+.welcome-header,
+.stat-card,
+.chart-container,
+.recent-activity,
+.top-artists,
+.login-box,
+.table,
+.table-responsive,
+.card {
+    background: linear-gradient(140deg, rgba(21, 29, 49, 0.94), rgba(19, 26, 44, 0.9)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 14px 32px rgba(3, 7, 18, 0.42) !important;
+}
+
+.table thead th {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.btn-primary,
+.btn-success,
+.audio-btn,
+.activity-icon,
+.artist-avatar,
+.user-avatar {
+    background: linear-gradient(135deg, var(--admin-accent), var(--admin-accent-soft)) !important;
+    border-color: transparent !important;
+    color: #130d06 !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    border-color: var(--admin-accent) !important;
+    color: var(--admin-accent) !important;
+}
+
+.btn-outline-primary:hover {
+    background: var(--admin-accent) !important;
+    color: #130d06 !important;
+}
+
+.form-control,
+select,
+textarea {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--admin-text) !important;
+}
+
+.form-control:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(255, 138, 45, 0.2) !important;
+    border-color: var(--admin-accent) !important;
+}
+
+.form-control::placeholder {
+    color: #8d98bb !important;
+}
+
+.stat-number,
+.song-count,
+.chart-container h3 {
+    color: var(--admin-accent) !important;
+}
+
+.admin-login-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(900px 460px at 95% 0%, rgba(255, 138, 45, 0.2), transparent 58%),
+        radial-gradient(900px 460px at 0% 10%, rgba(55, 201, 255, 0.18), transparent 58%),
+        linear-gradient(180deg, var(--admin-bg), var(--admin-bg-soft));
+}
+
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 220px !important;
+    }
+
+    .main-content {
+        margin-left: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding: 18px !important;
+    }
+}
