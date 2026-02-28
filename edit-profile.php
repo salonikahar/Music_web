@@ -16,9 +16,9 @@ $success = '';
 // Get current user data
 $stmt = $pdo->prepare("SELECT username, email, mobile_number FROM users WHERE id = ?");
 $stmt->execute([$userId]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$profileUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$user) {
+if (!$profileUser) {
     die('User not found');
 }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Email is required.";
         } elseif (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
             $error = "Please enter a valid email address.";
-        } elseif ($new_email === $user['email']) {
+        } elseif ($new_email === ($profileUser['email'] ?? '')) {
             $error = "This is already your current email address.";
         } else {
             try {
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $stmt = $pdo->prepare("UPDATE users SET email = ? WHERE id = ?");
                     if ($stmt->execute([$new_email, $userId])) {
-                        $user['email'] = $new_email;
+                        $profileUser['email'] = $new_email;
                         $success = "Email updated successfully!";
                     }
                 }
@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Mobile number is required.";
         } elseif (!preg_match('/^[\d\s\-\+]{10,20}$/', $new_mobile)) {
             $error = "Please enter a valid mobile number (10-20 digits, spaces and hyphens allowed).";
-        } elseif ($new_mobile === $user['mobile_number']) {
+        } elseif ($new_mobile === ($profileUser['mobile_number'] ?? '')) {
             $error = "This is already your current mobile number.";
         } else {
             try {
                 $stmt = $pdo->prepare("UPDATE users SET mobile_number = ? WHERE id = ?");
                 if ($stmt->execute([$new_mobile, $userId])) {
-                    $user['mobile_number'] = $new_mobile;
+                    $profileUser['mobile_number'] = $new_mobile;
                     $success = "Mobile number updated successfully!";
                 }
             } catch (PDOException $e) {
@@ -411,7 +411,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="hidden" name="action" value="update_email">
                 <div class="form-group">
                     <label for="email">Current Email</label>
-                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($profileUser['email'] ?? '') ?>" required>
                     <div class="help-text">You'll use this email to log in to your account</div>
                 </div>
                 <div class="form-actions">
@@ -427,7 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="hidden" name="action" value="update_mobile">
                 <div class="form-group">
                     <label for="mobile_number">Mobile Number</label>
-                    <input type="tel" id="mobile_number" name="mobile_number" value="<?= htmlspecialchars($user['mobile_number'] ?? '') ?>" placeholder="+1234567890" required>
+                    <input type="tel" id="mobile_number" name="mobile_number" value="<?= htmlspecialchars($profileUser['mobile_number'] ?? '') ?>" placeholder="+1234567890" required>
                     <div class="help-text">Used for password recovery via OTP</div>
                 </div>
                 <div class="form-actions">

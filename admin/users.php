@@ -20,8 +20,11 @@ $count_query = "SELECT COUNT(*) FROM users";
 $count_params = [];
 
 if (!empty($search)) {
-    $count_query .= " WHERE username LIKE ? OR email LIKE ?";
-    $count_params = ["%$search%", "%$search%"];
+    $count_query .= " WHERE username LIKE :search_username OR email LIKE :search_email";
+    $count_params = [
+        ':search_username' => "%$search%",
+        ':search_email' => "%$search%"
+    ];
 }
 
 $total_items = $pdo->prepare($count_query);
@@ -34,13 +37,21 @@ $query = "SELECT id, username, email, created_at, is_premium, premium_expires_at
 $params = [];
 
 if (!empty($search)) {
-    $query .= " WHERE username LIKE ? OR email LIKE ?";
-    $params = ["%$search%", "%$search%"];
+    $query .= " WHERE username LIKE :search_username OR email LIKE :search_email";
+    $params = [
+        ':search_username' => "%$search%",
+        ':search_email' => "%$search%"
+    ];
 }
 
 $query .= " ORDER BY id ASC LIMIT :limit OFFSET :offset";
 
 $stmt = $pdo->prepare($query);
+if (!empty($params)) {
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value, PDO::PARAM_STR);
+    }
+}
 $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
